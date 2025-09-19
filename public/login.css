@@ -1,0 +1,102 @@
+.login-container {
+    width: 400px;
+    padding: 40px;
+    margin: auto;
+    margin-top: 100px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px 50px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 28px;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.login-container button {
+    width: 95%;
+    padding: 15px;
+    background: linear-gradient(to right, #ff6b6b, #f06543);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #c0392b;
+}
+
+footer {
+    text-align: center;
+}
+
+/* NAVBAR */
+nav {
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    height: 80px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 120px;
+    height: 80px;
+    position: absolute;
+    left: 20px;
+    padding: 10px 20px;
+    box-shadow: 3px 6px 12px darkorange;
+    margin-right: auto;
+}
+
+.clock {
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bolder;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-left: auto;
+    color: #333;
+}
+
+nav h1 {
+    color: orange;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 2px;
+    font-size: 36px;
+    margin: 0;
+    flex-grow: 1;
+    /* Başlık alanını genişletir */
+    text-align: center;
+    /* Başlık ortada kalsın */
+    white-space: nowrap;
+}

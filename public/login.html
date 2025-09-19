@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Sayfası</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navbar-container">
+            <img src="tenom.png" alt="logo" class="logo">
+            <h1>Giriş Sayfası</h1>
+            <span id="clock" class="clock"></span>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <h1>Giriş Yap</h1>
+        <form id="loginForm" action="/login" method="POST" autocomplete="off">
+            <input placeholder="Email" type="email" id="email" name="email" required>
+            <input placeholder="Şifre" type="password" id="password" name="password" required>
+            <button type="submit">Giriş Yap</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Parça Takip Sistemi - Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+
+        function updateClock() {
+            const now = new Date();
+            const clock = document.getElementById('clock');
+            clock.textContent = now.toLocaleTimeString('tr-TR');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+        // Giriş formu işlemi
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('Lütfen email ve şifre giriniz');
+                return;
+            }
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({ email, password })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.success) {
+                        alert('Hata: ' + data.message);
+                        document.getElementById('password').value = '';
+                        return;
+                    }
+
+                    alert(data.message);
+                    window.location.href = data.redirect || '/index.html';
+                })
+                .catch(err => {
+                    console.error('Giriş hatası:', err);
+                    alert('Giriş sırasında bir hata oluştu');
+                });
+        });
+
+
+    </script>
+</body>
+
+</html>

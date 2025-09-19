@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takip Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navbar-container">
+            <img src="tenom.png" alt="logo" class="logo">
+            <h1>TAKİP SİSTEMİ</h1>
+            <a href="kullanicilar.html" class="kln-btn">Kullanıcılar</a>
+            <a href="login.html" class="cıkıs-btn" id="cıkıs-btn">Çıkış Yap</a>
+
+        </div>
+    </nav>
+
+    <div>
+        <div>
+            <h2 class="main-title">Malzeme Yönetimi</h2>
+        </div>
+        <section>
+            <h3 class="main-title">Malzemeler</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parça Id</th>
+                        <th>Parça Adı</th>
+                        <th>Kategori</th>
+                        <th>Stok</th>
+                    </tr>
+                </thead>
+                <tbody id="parcaBody">
+                </tbody>
+            </table>
+
+        </section>
+        <a href="http://localhost:3000/export/excel" target="_blank" class="indir-btn">
+            Excel Olarak İndir
+        </a>
+
+
+        <!--Parça Ekle-->
+        <section class="form-section">
+            <h2 class="main-title">Yeni Parça Ekle</h2>
+
+            <form id="ekle">
+                <input type="text" placeholder="Ad" id="ad" required>
+                <select id="kategori" required>
+                    <option value="">Kategori Seçin</option>
+                    <!--Veritabanından gelicek-->
+                </select>
+                <input type="number" placeholder="Stok" id="stok" required>
+                <button type="submit">Parça Ekle</button>
+            </form>
+        </section>
+        <!--Parça Silme-->
+        <section class="form-section">
+            <h2 class="main-title">Parça Sil</h2>
+            <form id="sil">
+                <input type="number" placeholder="Silinecek Parçanın ID'si" id="silID" required>
+                <button type="submit" class="danger">Parça Sil</button>
+            </form>
+        </section>
+        <!--Parça Güncelleme-->
+        <section class="form-section">
+            <h2 class="main-title">Stok Güncelle</h2>
+            <form id="guncelle">
+                <input type="number" placeholder="Parça ID" id="guncelleID" required>
+                <input type="number" placeholder="Eklenecek Stok Miktarı" id="eklenecekStok" required>
+                <button type="submit">Stok Güncelle</button>
+            </form>
+        </section>
+    </div>
+    <script src="script.js">
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/check-auth', {
+                credentials: 'include', // Buraya dikkat
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.loggedIn) {
+                        location.href = '/login.html'; // Giriş yapılmamışsa login sayfasına yönlendir
+                    }
+                })
+                .catch(err => {
+                    console.error('Oturum kontrol hatası:', err);
+                    location.href = '/login.html'; // Hata olursa da güvenlik için login sayfasına yönlendir
+                });
+        });
+
+
+    </script>
+</body>
+
+</html>

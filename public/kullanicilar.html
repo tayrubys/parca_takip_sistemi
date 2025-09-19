@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="navbar-container">
+            <img src="tenom.png" alt="logo" class="logo">
+            <h1>ADMIN PANELI</h1>
+            <a href="index.html" class="cıkıs-btn">Geri Dön</a>
+        </div>
+    </nav>
+    <div>
+        <div>
+            <h2 class="main-title">Kullanıcı Yönetimi</h2>
+        </div>
+        <section>
+            <h3 class="main-title">Kullanıcılar</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kullanıcı Adı</th>
+                        <th>Kullanıcı Soyadı</th>
+                        <th>Kullanıcı e-posta</th>
+                        <th>Kullanıcı şifre</th>
+                        <th>Kullanıcı Rol</th>
+                    </tr>
+                </thead>
+                <tbody id="kullanicibody">
+                </tbody>
+            </table>
+
+        </section>
+        <!--Kullanıcı Ekle-->
+        <section class="form-section">
+            <h2 class="main-title">Yeni Kullanıcı Ekle</h2>
+            <form id="Kekle">
+                <input type="text" placeholder="Adı" id="ad" required>
+                <input type="text" placeholder="Soyadı" id="soyad" required>
+                <input type="email" placeholder="Email" id="email" required>
+                <input type="password" placeholder="Şifre" id="sifre" required>
+                <select id="rol" required>
+                    <option value="">Rol Seçin</option>
+                    <option value="kullanıcı">Kullanıcı</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit">Kullanıcı Ekle</button>
+            </form>
+        </section>
+        <!--Kullanıcı Silme-->
+        <section class="form-section">
+            <h2 class="main-title">Kullanıcı Sil</h2>
+            <form id="Ksil">
+                <input type="number" placeholder="Silinecek Kullanıcının ID'si" id="KsilID" required>
+                <button type="submit" class="danger">Kullanıcı Sil</button>
+            </form>
+        </section>
+        <script>
+            const API_URL = 'http://localhost:3000'; // ya da senin backend URL'in
+
+            // Kullanıcıları listele
+
+            document.addEventListener('DOMContentLoaded', kullanicilariGetir);
+            function kullanicilariGetir() {
+                fetch(`${API_URL}/kullanicilar`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const tbody = document.getElementById('kullanicibody');
+                        tbody.innerHTML = ``;//table içi doluysa temizliyoruz
+                        data.forEach(element => {//data listesindeki her parça için tr oluşturuyoruz
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                <td>${element.kullanici_adi}</td>
+                <td>${element.kullanici_soyadi}</td>
+                <td>${element.kullanici_eposta}</td>
+                <td>${element.kullanici_sifre}</td>  
+                <td>${element.kullanici_rol}</td>
+                `;
+                            tbody.appendChild(tr);
+                        });
+                    })
+                    .catch(err => console.error('kullanıcılar listelenirken hata oluştu:', err));
+            }
+
+            //kullanıcı ekleme
+            document.getElementById('Kekle').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const kullanici_adi = document.getElementById('ad').value;
+                const kullanici_soyadi = document.getElementById('soyad').value;
+                const kullanici_eposta = document.getElementById('email').value;
+                const kullanici_sifre = document.getElementById('sifre').value;
+                const kullanici_rol = document.getElementById('rol').value;
+
+                fetch(`${API_URL}/kullanicilar`, {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({ kullanici_adi, kullanici_soyadi, kullanici_eposta, kullanici_sifre, kullanici_rol })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        alert(`${kullanici_adi} başarılı bir şekilde eklendi.`);
+                        this.reset();//formu temizler ekleme yaptıktan sonra
+                        kullanicilariGetir();
+                    })
+                    .catch(err => {
+                        console.error('hata:', err);
+                        alert('Kullanıcı eklenirken hata oluştu.');
+                    });
+            });
+
+            //kullanici silme(id)
+            document.getElementById('Ksil').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const silIdK = Number(document.getElementById('KsilID').value);
+                if (!silIdK || silIdK <= 0) {
+                    alert('Lütfen geçerli bir ID giriniz.');
+                    return;
+                }
+                fetch(`${API_URL}/kullanicilar/${silIdK}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!data.status) {
+                            alert(data.mesaj || `${silIdK} ID'li parça silinirken hata oluştu`);
+                            return;
+                        }
+                        alert(data.mesaj);
+                        this.reset();
+                        kullanicilariGetir();
+                    })
+                    .catch(err => {
+                        console.error('hata:', err);
+                        alert('Kullanıcı silinirken hata oluştu');
+                    });
+            });
+        </script>
+</body>
+
+</html>
