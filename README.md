@@ -21,3 +21,6 @@ Bu proje, bir işletmede parça ve malzeme stoklarını takip etmek için geliş
 
 ### 
 ![image alt](https://github.com/tayrubys/parca_takip_sistemi/blob/b497465bd71c8c7fe00f7d8937cd3806e9c25a98/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-03-06%20235949.png)
+
+###
+![image alt](https://github.com/tayrubys/parca_takip_sistemi/blob/f563d8376d3d7500795158b616302bb260d59d6b/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-03-07%20000238.png)
