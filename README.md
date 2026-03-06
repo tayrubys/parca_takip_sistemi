@@ -15,3 +15,6 @@ Bu proje, bir işletmede parça ve malzeme stoklarını takip etmek için geliş
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js (Express)
 - Veritabanı: MySQL
+
+### giriş sayfası
+![image alt](https://github.com/tayrubys/parca_takip_sistemi/blob/597884360071f6bfa3ae4195162172f5d1b221b2/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-03-06%20235047.png)
