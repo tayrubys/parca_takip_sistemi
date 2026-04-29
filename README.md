@@ -1,5 +1,17 @@
 # Parça Takip Sistemi
+<div align="center">
 
+![Node](https://img.shields.io/badge/NODE-EXPRESS-FF8A00?style=for-the-badge&logo=node.js&logoColor=white&labelColor=2B1B12)
+![JavaScript](https://img.shields.io/badge/JAVASCRIPT-FRONTEND-FF6B5F?style=for-the-badge&logo=javascript&logoColor=white&labelColor=8A3A00)
+![HTML](https://img.shields.io/badge/HTML-PAGE-FF8A00?style=for-the-badge&logo=html5&logoColor=white&labelColor=2B1B12)
+![CSS](https://img.shields.io/badge/CSS-STYLING-FF6B5F?style=for-the-badge&logo=css3&logoColor=white&labelColor=8A3A00)
+
+![MySQL](https://img.shields.io/badge/MYSQL-DATABASE-FF8A00?style=for-the-badge&logo=mysql&logoColor=white&labelColor=2B1B12)
+![Auth](https://img.shields.io/badge/AUTH-LOGIN_SYSTEM-FF6B5F?style=for-the-badge&logo=auth0&logoColor=white&labelColor=8A3A00)
+![Admin](https://img.shields.io/badge/ADMIN-PANEL-FF8A00?style=for-the-badge&logo=securityscorecard&logoColor=white&labelColor=2B1B12)
+![Stock](https://img.shields.io/badge/STOCK-TRACKING-FF6B5F?style=for-the-badge&logo=databricks&logoColor=white&labelColor=8A3A00)
+
+</div>
 Bu proje, bir işletmede parça ve malzeme stoklarını takip etmek için geliştirilmiş basit bir web uygulamasıdır. Proje Node.js ve MySQL kullanılarak geliştirilmiştir.
 
 ## Özellikler
